@@ -1,6 +1,44 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>TOEIC Daily Vocabulary</title><style>
 :root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#152d2b;background:#eff5f3}*{box-sizing:border-box}body{margin:0}header{background:linear-gradient(115deg,#103f38,#177765);color:white;padding:28px 18px}header .inside,main{max-width:1000px;margin:auto}h1{margin:0;font-size:clamp(25px,4vw,39px)}header p{opacity:.85;margin:9px 0 0}main{padding:22px 14px 60px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}button,select,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 15px;font-weight:700;background:#166a59;color:#fff}button:hover{filter:brightness(1.06)}button.secondary{background:#e4f0ec;color:#145446}button.active{background:#123d37;color:#fff}.panel,.question{background:#fff;border-radius:18px;padding:22px;box-shadow:0 3px 13px #103a3020;margin-bottom:16px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.split{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.muted{color:#657c77}.label{font-size:13px;font-weight:700;color:#267665;text-transform:uppercase;letter-spacing:.5px}.score{font-size:20px;font-weight:800;color:#176b55}.question{border:1px solid #edf2f0}.question p{line-height:2;font-size:17px}input[type=text],input[type=date],textarea,select{border:1.5px solid #bccfc9;border-radius:10px;padding:10px;background:#fff;color:#173c35;max-width:100%}input.answer{width:170px;background:#f7fbfa}input.correct{border-color:#198354;background:#eaf9f0}input.wrong{border-color:#c94d4d;background:#fff0ef}.feedback{font-size:14px;font-weight:700;margin-top:10px}.translation{margin-top:12px;padding:13px 15px;background:#eaf5f0;border-left:4px solid #198354;border-radius:9px;line-height:1.65}.hint{padding:12px 14px;border-radius:10px;background:#fff8de;margin-top:10px;color:#66521b}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.stat{background:#eaf5f0;border-radius:12px;padding:14px}.stat strong{display:block;font-size:24px;margin-top:4px}.hidden{display:none!important}textarea{width:100%;min-height:115px;resize:vertical}h2{margin:0 0 12px}small{color:#6a817b}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #84d9bd;outline-offset:2px}.error{color:#bd4545}.pill{background:#e9f4ee;color:#1d755b;border-radius:999px;padding:6px 10px;display:inline-block}footer{text-align:center;color:#718781;font-size:12px;padding:20px}
-</style></head><body><header><div class="inside"><h1>📗 TOEIC Daily Vocabulary</h1><p>Từ mới mỗi ngày · Ôn tập tích lũy · Luyện tập theo ngữ cảnh</p></div></header><main>
+
+/* Pink pastel + playful pet theme. Appearance-only override. */
+:root{color:#4b2941;background:#fff3f8}
+body{background:radial-gradient(circle at 10% 15%,#ffe1ee 0,transparent 26%),radial-gradient(circle at 90% 65%,#ffeaf4 0,transparent 30%),#fff7fb;color:#4b2941}
+header{background:linear-gradient(115deg,#fa80b5,#e65c9c,#d965bd);color:white;border-bottom:5px solid #ffd5e8;position:relative;overflow:hidden}
+header:after{content:"🐱 🐾 🐶";position:absolute;right:5%;top:23px;font-size:clamp(24px,4vw,44px);opacity:.9;pointer-events:none}
+header .inside{position:relative;z-index:1;padding-right:110px}
+h1{letter-spacing:-.6px}
+header p{opacity:1}
+.panel,.question{background:#fff;border:1px solid #f9d7e7;box-shadow:0 6px 23px #dd82ad1c;border-radius:20px}
+button{background:#d95796;color:white;border-radius:13px}
+button.secondary{background:#ffe2ef;color:#9d326e}
+button.active{background:#aa367c;color:white}
+button:hover{filter:brightness(1.04);transform:translateY(-1px)}
+.nav button{border:1px solid #f4c8de}
+.label{color:#bf4888}
+.score{color:#b93c7b}
+.muted,small,footer{color:#885c77}
+.stat{background:linear-gradient(125deg,#ffe0ed,#fff0f7);border:1px solid #ffd0e4}
+.stat strong{color:#ab3d79}
+.question{border-left:5px solid #f4a8c9}
+.question:nth-child(even){border-left-color:#df9be9}
+input[type=text],input[type=date],textarea,select{border-color:#eabbd2;color:#542945;background:#fffafd}
+input.answer{background:#fff7fb}
+input.correct{border-color:#36a477;background:#eafff2}
+input.wrong{border-color:#d35b6b;background:#fff0f1}
+.translation{background:#fff0f7;border-left-color:#de69a1}
+.hint{background:#fff2d8;color:#75532f}
+.pill{background:#ffe1ee;color:#a63771}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #fda6cf;outline-offset:2px}
+#overview:before{content:"🐾  Cùng mèo và cún học từ mới mỗi ngày nhé!  🐶";display:block;color:#a43c79;font-weight:750;margin-bottom:15px}
+#view-daily>.panel:first-child:before{content:"🐱";float:right;font-size:26px}
+#view-review>.panel:first-child:before{content:"🐶";float:right;font-size:26px}
+#view-drill>.panel:first-child:before{content:"🐾";float:right;font-size:26px}
+#view-glossary>.panel:first-child:before{content:"🐈";float:right;font-size:26px}
+#view-progress>.panel:first-child:before{content:"🐕";float:right;font-size:26px}
+#view-manage>.panel:first-child:before{content:"🐱";float:right;font-size:26px}
+@media(max-width:600px){header:after{font-size:25px;right:14px;top:16px}header .inside{padding-right:56px}.panel,.question{padding:16px}.nav button{flex:1 1 auto}}
+</style></head><body><header><div class="inside"><h1>🐱 TOEIC Daily Vocabulary 🐶</h1><p>Từ mới mỗi ngày · Ôn tập tích lũy · Luyện tập theo ngữ cảnh</p></div></header><main>
 <div class="nav"><button id="tab-daily" onclick="tab('daily')">📅 Bài học theo ngày</button><button id="tab-review" onclick="tab('review')" class="secondary">🔁 Ôn tập tổng hợp</button><button id="tab-drill" onclick="tab('drill')" class="secondary">🎯 Dò từ vựng</button><button id="tab-glossary" onclick="tab('glossary')" class="secondary">📖 Sổ tay từ vựng</button><button id="tab-progress" onclick="tab('progress')" class="secondary">📊 Tiến độ</button><button id="tab-manage" onclick="tab('manage')" class="secondary">➕ Quản lý từ vựng</button></div>
 <section class="panel" id="overview"><div class="grid"><div class="stat"><span class="muted">Tổng từ đã lưu</span><strong id="total">22</strong></div><div class="stat"><span class="muted">Số ngày học</span><strong id="days">2</strong></div><div class="stat"><span class="muted">Từ cần ôn lại</span><strong id="weak">0</strong></div></div></section>
 <section id="view-daily"><div class="panel"><div class="split"><div><div class="label">Chọn buổi học</div><h2>Học từ vựng theo ngày</h2></div><select id="daySelect" onchange="renderQuiz()" aria-label="Chọn ngày học"></select></div><p class="muted">Giữ nguyên 15 từ gốc; những ngày mới sẽ tạo thành bài học riêng.</p></div><div id="dailyQuiz"></div></section>
