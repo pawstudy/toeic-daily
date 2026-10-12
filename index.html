@@ -106,11 +106,11 @@ function newReview(){
  const keys=[...byWord.keys()].sort();
  const signature=keys.join('|');
  let cycle=reviewCycles[mode];
- if(!cycle||cycle.signature!==signature){cycle={signature,remaining:shuffleArray([...keys]),completed:0};reviewCycles[mode]=cycle}
+ if(!cycle||cycle.signature!==signature){cycle={signature,remaining:(mode==='all'?[...shuffleArray(keys.filter(k=>isWeak(k))),...shuffleArray(keys.filter(k=>!isWeak(k)))]:shuffleArray([...keys])),completed:0};reviewCycles[mode]=cycle}
  const raw=$('reviewCount').value;
  const requested=raw==='all'?keys.length:Number(raw);
  const count=Math.min(requested,keys.length);
- if(!cycle.remaining.length&&keys.length){cycle.remaining=shuffleArray([...keys]);cycle.completed++}
+ if(!cycle.remaining.length&&keys.length){cycle.remaining=(mode==='all'?[...shuffleArray(keys.filter(k=>isWeak(k))),...shuffleArray(keys.filter(k=>!isWeak(k)))]:shuffleArray([...keys]));cycle.completed++}
  const selected=cycle.remaining.splice(0,count);
  // Finish the current cycle before any repeats. A final short batch is intentional.
  reviewItems=selected.map(k=>byWord.get(k)).filter(Boolean);
