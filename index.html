@@ -188,7 +188,7 @@ function newDrill(){
 }
 
 const vietnameseAlternatives={
-"retirement":["nghỉ hưu"],"borrow":["vay"],"process":["quy trình"],"consider":["cân nhắc"],"headquarters":["trụ sở chính"],"expand":["mở rộng"],"release":["phát hành"],"residential":["khu dân cư"],
+"retirement":["nghỉ hưu","sự về hưu","sự nghỉ hưu","nghỉ hưu, sự về hưu"],"borrow":["vay","mượn","vay mượn","vay, mượn"],"process":["quy trình","quá trình","xử lý","quy trình, quá trình; xử lý"],"consider":["cân nhắc","xem xét","cân nhắc, xem xét"],"headquarters":["trụ sở chính"],"expand":["mở rộng","phát triển","mở rộng, phát triển"],"release":["phát hành","ra mắt","phát hành, ra mắt"],"residential":["khu dân cư","nhà ở","thuộc khu dân cư","thuộc khu dân cư, nhà ở"],
  relative:['họ hàng','người thân'],personality:['tính cách'],curious:['tò mò','ham học hỏi'],
  confident:['tự tin'],adaptable:['dễ thích nghi','có khả năng thích nghi','thích nghi tốt'],
  ignore:['phớt lờ','làm ngơ','bỏ qua','lảng tránh'],consumer:['người tiêu dùng','người tiêu thụ'],
@@ -206,9 +206,16 @@ function normalizeVietnamese(text){
 }
 function checkVietnameseMeaning(word,answer,vi){
  const key=word.toLowerCase();
- const options=vietnameseAlternatives[key]||String(vi||'').split(/[,;/]/).map(x=>x.trim()).filter(Boolean);
+ const original=String(vi||'').replace(/\([^)]*\)/g,m=>m.slice(1,-1));
+ const parts=original.split(/[,;/]/).map(x=>x.trim()).filter(Boolean);
+ const options=[...(vietnameseAlternatives[key]||[]),String(vi||''),original,...parts];
  const normalized=normalizeVietnamese(answer);
- return normalized.length>0&&options.some(x=>normalizeVietnamese(x)===normalized);
+ if(!normalized)return false;
+ if(options.some(x=>normalizeVietnamese(x)===normalized))return true;
+ // Also accept several correct synonyms separated with commas, semicolons or slashes.
+ const submitted=String(answer).split(/[,;/]/).map(x=>normalizeVietnamese(x)).filter(Boolean);
+ return submitted.length>1&&submitted.every(x=>options.some(o=>normalizeVietnamese(o)===x));
+
 }
 function newVietnameseRecall(){
  const day=$('viRecallDay').value;
