@@ -72,7 +72,43 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline-color:#86c
 @keyframes catBounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(-10deg)}}
 @media(max-width:650px){#catBuddy{bottom:8px;right:8px;padding:5px 8px}#catBuddy .catFace{font-size:25px}#catBuddy .catSpeech{font-size:11px}}
 @media(prefers-reduced-motion:reduce){#catBuddy.celebrate .catFace{animation:none}}
-</style><style id="bulk-tools-css">#bulkTools{max-width:1100px;margin:22px auto;padding:18px;background:#fffefa;border:2px solid #b3ddcf;border-radius:20px;box-shadow:0 8px 30px #2c66551b;color:#254b43;font:15px/1.55 system-ui,sans-serif}#bulkTools h2{font-size:21px;margin:0 0 8px}#bulkTools p{margin:5px 0 12px}#bulkTools .btrow{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}#bulkTools button,#bulkTools label.btl{background:#247763;color:white;border:none;border-radius:12px;padding:10px 13px;cursor:pointer;font:600 14px system-ui;display:inline-block}#bulkTools button.secondary,#bulkTools label.secondary{background:#e5f3eb;color:#24584d}#bulkTools input[type=file]{display:none}#bulkTools #btReport{white-space:pre-wrap;font-weight:600}#bulkTools details{margin-top:12px}#bulkTools summary{cursor:pointer;font-weight:600}#bulkTools .btfine{font-size:12px;color:#617a70}</style></head><body><header><div class="inside"><h1>🐱 TOEIC Daily Vocabulary 🐶</h1><p>Từ mới mỗi ngày · Ôn tập tích lũy · Luyện tập theo ngữ cảnh</p></div></header><main>
+</style><style id="bulk-tools-css">#bulkTools{max-width:1100px;margin:22px auto;padding:18px;background:#fffefa;border:2px solid #b3ddcf;border-radius:20px;box-shadow:0 8px 30px #2c66551b;color:#254b43;font:15px/1.55 system-ui,sans-serif}#bulkTools h2{font-size:21px;margin:0 0 8px}#bulkTools p{margin:5px 0 12px}#bulkTools .btrow{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}#bulkTools button,#bulkTools label.btl{background:#247763;color:white;border:none;border-radius:12px;padding:10px 13px;cursor:pointer;font:600 14px system-ui;display:inline-block}#bulkTools button.secondary,#bulkTools label.secondary{background:#e5f3eb;color:#24584d}#bulkTools input[type=file]{display:none}#bulkTools #btReport{white-space:pre-wrap;font-weight:600}#bulkTools details{margin-top:12px}#bulkTools summary{cursor:pointer;font-weight:600}#bulkTools .btfine{font-size:12px;color:#617a70}</style>
+<style id="toeic-v2-theme">
+:root{--brand:#237968;--pale:#e9f6ef;--ink:#264640;--muted:#70877e;--stroke:#e0ebe3}
+html{scroll-behavior:smooth}
+body{background:linear-gradient(135deg,#f1f9f4,#fffaf1 53%,#f4f8f4)!important;color:var(--ink)!important;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 90% 8%,#d9f4e6 0,transparent 28%),radial-gradient(circle at 5% 80%,#ffeced 0,transparent 25%);opacity:.7;z-index:-1}
+#toeicAppShell{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr);max-width:1480px;margin:auto;gap:25px;padding:24px}
+#toeicSidebar{background:#fffefa;border:1px solid var(--stroke);border-radius:25px;padding:21px 13px;box-shadow:0 12px 35px #385a4814;position:sticky;top:24px;height:calc(100vh - 48px);display:flex;flex-direction:column}
+#toeicSidebar .brand{padding:8px 12px 21px;color:#236a59;font-size:21px;font-weight:850;line-height:1.2}
+#toeicSidebar .brand small{display:block;font-size:10px;letter-spacing:2px;color:#7a938a;margin-top:5px}
+#toeicSidebar .sidebar-note{margin-top:auto;background:#f0f7ed;border-radius:16px;padding:13px;font-size:12px;line-height:1.6;color:#527467}
+#toeicSidebar .nav{display:flex;flex-direction:column;gap:7px;margin:0!important}
+#toeicSidebar .nav button{background:transparent!important;color:#47675e!important;text-align:left!important;padding:13px 14px!important;border-radius:13px!important;box-shadow:none!important;width:100%;font-size:13px!important;font-weight:650!important;border:0!important}
+#toeicSidebar .nav button:not(.secondary),#toeicSidebar .nav button.active{background:#ddf2e5!important;color:#176b52!important}
+#toeicMain{min-width:0}
+#toeicMain>header{background:transparent!important;padding:0!important;color:var(--ink)!important}
+#toeicMain>header .inside{max-width:none!important;background:linear-gradient(115deg,#d9f2e4,#fff7df 68%,#fce5ea)!important;border:1px solid #d3eadb;border-radius:28px;min-height:180px;padding:34px 36px;position:relative;overflow:hidden}
+#toeicMain>header h1{color:#246959!important;font-size:clamp(26px,3vw,39px)!important;max-width:75%;letter-spacing:-.8px}
+#toeicMain>header p{color:#52766a!important;opacity:1!important;max-width:70%;line-height:1.7}
+#toeicMain>header .inside:after{content:"🐱";position:absolute;right:7%;bottom:-12px;font-size:115px;filter:drop-shadow(0 9px 6px #2b654120);transform:rotate(-8deg)}
+#toeicMain main{padding:22px 0 50px!important;max-width:none!important}
+#toeicMain .panel,#toeicMain .card,#toeicMain .stat,#toeicMain .quiz-card{border-radius:20px!important;border:1px solid #e4ede7!important;box-shadow:0 7px 25px #3b695512!important}
+#toeicMain .panel{background:#fffefa!important;padding:23px!important;margin-bottom:18px!important}
+#toeicMain h2{color:#275d50;letter-spacing:-.35px}
+#toeicMain button:not(.secondary){background:#267b65;border-radius:12px}
+#toeicMain button.secondary{background:#e9f5ef!important;color:#286d58!important;border-radius:12px}
+#toeicMain input,#toeicMain select,#toeicMain textarea{border-radius:11px;border-color:#d8e7de}
+#toeicMain .stat{background:linear-gradient(160deg,#fff,#f6fbf6)!important;padding:19px!important}
+#toeicMain .stat strong{color:#277961!important;font-size:32px!important}
+#toeicMain .grid{gap:14px}
+#toeicMain #bulkTools{max-width:none;border:1px solid #dceae0;border-radius:22px;box-shadow:0 6px 25px #3b695514}
+#toeicMain footer{color:#7b9289}
+#catBuddy{z-index:20}
+#toeicMobileBrand{display:none}
+@media(max-width:850px){#toeicAppShell{display:block;padding:10px 12px}#toeicSidebar{position:sticky;top:0;z-index:25;height:auto;display:block;border-radius:17px;padding:9px;margin-bottom:13px;background:#fffefaf2;backdrop-filter:blur(12px)}#toeicSidebar .brand{display:none}#toeicSidebar .sidebar-note{display:none}#toeicSidebar .nav{flex-direction:row;overflow-x:auto;gap:5px;scrollbar-width:thin;padding-bottom:3px}#toeicSidebar .nav button{width:max-content;white-space:nowrap;padding:10px 12px!important;font-size:12px!important}#toeicMobileBrand{display:block;font-weight:800;color:#287661;font-size:14px;padding:4px 8px 8px}#toeicMain>header .inside{min-height:155px;padding:26px 20px}#toeicMain>header h1{font-size:26px!important;max-width:80%}#toeicMain>header p{font-size:13px;max-width:75%}#toeicMain>header .inside:after{font-size:72px;right:1%}#toeicMain main{padding-top:12px!important}#toeicMain .panel{padding:17px!important}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body><header><div class="inside"><h1>🐱 TOEIC Daily Vocabulary 🐶</h1><p>Từ mới mỗi ngày · Ôn tập tích lũy · Luyện tập theo ngữ cảnh</p></div></header><main>
 <div class="nav"><button id="tab-daily" onclick="tab('daily')">📅 Bài học theo ngày</button><button id="tab-review" onclick="tab('review')" class="secondary">🔁 Ôn tập tổng hợp</button><button id="tab-drill" onclick="tab('drill')" class="secondary">🎯 Dò từ vựng</button><button id="tab-glossary" onclick="tab('glossary')" class="secondary">📖 Sổ tay từ vựng</button><button id="tab-progress" onclick="tab('progress')" class="secondary">📊 Tiến độ</button><button id="tab-manage" onclick="tab('manage')" class="secondary">➕ Quản lý từ vựng</button></div>
 <section class="panel" id="overview"><div class="grid"><div class="stat"><span class="muted">Tổng từ đã lưu</span><strong id="total">22</strong></div><div class="stat"><span class="muted">Số ngày học</span><strong id="days">2</strong></div><div class="stat"><span class="muted">Từ cần ôn lại</span><strong id="weak">0</strong></div></div></section>
 <section id="view-daily"><div class="panel"><div class="split"><div><div class="label">Chọn buổi học</div><h2>Học từ vựng theo ngày</h2></div><select id="daySelect" onchange="renderQuiz()" aria-label="Chọn ngày học"></select></div><p class="muted">Giữ nguyên 15 từ gốc; những ngày mới sẽ tạo thành bài học riêng.</p></div><div id="dailyQuiz"></div></section>
@@ -271,5 +307,19 @@ $("btExport").onclick=()=>{let rows=[heads];if(korean){for(const w of current().
 $("btBackup").onclick=()=>download((korean?"mongmong":"toeic")+"-full-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(current(),null,2),"application/json");
 $("btCsv").onchange=async function(){const file=this.files[0];this.value="";if(!file)return;try{const rows=parseCSV(await file.text());if(rows.length<2)throw Error("File không có dòng dữ liệu");const labels=rows.shift().map(x=>normalized(x));const missing=(korean?["ko","meaning"]:["date","word","sentence","hint"]).filter(k=>!labels.includes(k));if(missing.length)throw Error("Thiếu cột: "+missing.join(", "));let valid=0,bad=0,entries=korean?[]:{};for(let row of rows){const obj={};labels.forEach((k,i)=>obj[k]=(row[i]||"").trim());if(korean){let w=validateKorean(obj);if(!w){bad++;continue}entries.push(w)}else{if(!/^\d{4}-\d{2}-\d{2}$/.test(obj.date)){bad++;continue}let w=validateEnglish(obj);if(!w){bad++;continue}(entries[obj.date]??=[]).push(w)}valid++}if(!valid)throw Error("Không có từ hợp lệ. Kiểm tra file mẫu.");if(!confirm("Có "+valid+" từ hợp lệ, "+bad+" dòng lỗi bị bỏ qua. Nhập và bỏ qua từ trùng, KHÔNG xóa dữ liệu cũ?")){report("Đã hủy nhập.");return}const result=addMany(entries);report("✅ Đã thêm "+result.added+" từ; bỏ qua "+result.duplicate+" từ trùng và "+bad+" dòng lỗi.")}catch(e){report("❌ "+e.message)}};
 $("btJson").onchange=async function(){const file=this.files[0];this.value="";if(!file)return;try{const incoming=JSON.parse(await file.text());let entries,number;if(korean){if(!Array.isArray(incoming.words))throw Error("Không phải JSON MongMong hợp lệ");entries=incoming.words.filter(w=>w&&typeof w.ko==="string"&&typeof w.meaning==="string").map(w=>({...w,id:makeId()}));number=entries.length}else{if(!incoming.lessons||typeof incoming.lessons!=="object")throw Error("Không phải JSON TOEIC hợp lệ");entries={};number=0;for(let [day,words] of Object.entries(incoming.lessons)){if(!Array.isArray(words))continue;entries[day]=words.filter(w=>w&&w.word&&w.sentence&&w.hint&&w.sentence.includes("{input}"));number+=entries[day].length}}if(!confirm("Tìm thấy "+number+" từ trong JSON. Chỉ GỘP từ chưa có, giữ nguyên tiến độ hiện tại?"))return;const result=addMany(entries);report("✅ Đã gộp "+result.added+" từ mới; "+result.duplicate+" từ đã có. Tiến độ hiện tại được giữ nguyên.")}catch(e){report("❌ "+e.message)}}; 
+})();
+</script><script id="toeic-v2-layout">
+(function(){
+const header=document.querySelector("body > header"),main=document.querySelector("body > main"),nav=main?.querySelector(".nav");
+if(!header||!main||!nav)return;
+const shell=document.createElement("div");shell.id="toeicAppShell";
+const sidebar=document.createElement("aside");sidebar.id="toeicSidebar";sidebar.innerHTML='<div class="brand">🐱 TOEIC Daily<small>YOUR ENGLISH CORNER</small></div><div id="toeicMobileBrand">🐱 TOEIC Daily 2.0</div>';
+sidebar.appendChild(nav);
+const note=document.createElement("div");note.className="sidebar-note";note.innerHTML="🌿 <b>Keep growing!</b><br>Mỗi từ mới là một bước tiến. Dữ liệu học được lưu trên thiết bị này.";sidebar.appendChild(note);
+const content=document.createElement("div");content.id="toeicMain";
+header.parentNode.insertBefore(shell,header);shell.appendChild(sidebar);shell.appendChild(content);content.appendChild(header);content.appendChild(main);
+const bulk=document.querySelector("#bulkTools");if(bulk&&bulk.parentNode===document.body)main.appendChild(bulk);
+const sync=()=>{const buttons=[...nav.querySelectorAll("button")];buttons.forEach(b=>{b.classList.toggle("active",!b.classList.contains("secondary"));b.setAttribute("aria-current",b.classList.contains("active")?"page":"false")})};
+const observer=new MutationObserver(sync);observer.observe(nav,{subtree:true,attributes:true,attributeFilter:["class"]});sync();
 })();
 </script></body></html>
