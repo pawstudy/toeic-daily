@@ -327,15 +327,22 @@ words.forEach((q,i)=>{const variant=[q.sentence,...(q.variants||[])];const sente
 const inp=card.querySelector('input'),feed=card.querySelector('.feedback');card.querySelector('.check').onclick=()=>check(q,i,inp,feed,words.length,sentenceIndex);inp.onkeydown=e=>{if(e.key==='Enter')check(q,i,inp,feed,words.length)};const listen=document.createElement('button');listen.className='secondary';listen.textContent='🔊 Nghe từ';listen.onclick=()=>speakEnglish(q.word);card.querySelector('.row').append(listen);card.querySelector('.showHint').onclick=()=>card.querySelector('.hint').classList.toggle('hidden');holder.append(card)})}
 function check(q,i,inp,feed,total,sentenceIndex){if(answers[i])return;const val=inp.value.trim().toLowerCase().replace(/\s+/g,' '),correct=q.word.toLowerCase();if(!val)return;const st=db.stats[mkId(q)]||(db.stats[mkId(q)]={wrong:0,correct:0});if(val===correct){answers[i]=true;inp.disabled=true;inp.className='answer correct';feed.textContent='✅ Chính xác!';feed.style.color='#16865b';cheerCat();if(active==='review'){const translated=sentenceTranslations[q.word.toLowerCase()]?.[sentenceIndex];const panel=inp.closest('.question').querySelector('.translation');panel.textContent=translated?'🇻🇳 Dịch câu: '+translated:'🇻🇳 Chưa có bản dịch tiếng Việt cho câu này.';panel.classList.remove('hidden')}st.correct++;st.needsReview=false;recordSuccess(mkId(q));const score=Object.values(answers).filter(Boolean).length;document.querySelector('#view-'+active+' #currentScore').textContent=`${score} / ${total} câu đúng`;if(score===total)feed.textContent+=' 🎉 Hoàn thành bài!'}else{inp.className='answer wrong';feed.textContent='❌ Chưa đúng, thử lại nhé!';feed.style.color='#bb4545';st.wrong++;st.needsReview=true;recordMiss(mkId(q))}save();$('weak').textContent=Object.keys(db.stats).filter(k=>isWeak(k)).length}
 
-let mcqDeck=[],mcqIndex=0,mcqRight=0,mcqAnswered=false;
+let mcqDeck=[],mcqIndex=0,mcqRight=0,mcqAnswered=false;const mcqCycles={};
 function mcqMeaning(q){return String(q.vi||vietnamese[q.word.toLowerCase()]||'').trim()}
 function mcqShuffle(a){return shuffleArray([...a])}
 function startMcq(){
  const day=$('mcqDay').value,seen=new Set();
  const selected=Object.entries(db.lessons).filter(([d])=>day==='all'||day===d).flatMap(([,a])=>a).filter(q=>{const k=q.word.toLowerCase(),m=mcqMeaning(q);if(!m||seen.has(k))return false;seen.add(k);return true});
  const all=allWords().filter(q=>mcqMeaning(q));const unique=[...new Map(all.map(q=>[q.word.toLowerCase(),q])).values()];
- mcqDeck=mcqShuffle(selected).filter(q=>unique.filter(x=>x.word.toLowerCase()!==q.word.toLowerCase()&&mcqMeaning(x)!==mcqMeaning(q)).length>=3);
- const limit=$('mcqCount').value;mcqDeck=limit==='all'?mcqDeck:mcqDeck.slice(0,Number(limit));mcqIndex=0;mcqRight=0;mcqAnswered=false;drawMcq();
+ const eligible=selected.filter(q=>unique.filter(x=>x.word.toLowerCase()!==q.word.toLowerCase()&&mcqMeaning(x)!==mcqMeaning(q)).length>=3);
+ const limit=$('mcqCount').value,count=limit==='all'?eligible.length:Math.min(Number(limit),eligible.length);
+ const cycleKey=day+'|'+$('mcqMode').value,signature=eligible.map(q=>q.word.toLowerCase()).sort().join('|');
+ let cycle=mcqCycles[cycleKey];
+ if(!cycle||cycle.signature!==signature){cycle={signature,remaining:mcqShuffle(eligible.map(q=>q.word.toLowerCase()))};mcqCycles[cycleKey]=cycle}
+ if(cycle.remaining.length===0)cycle.remaining=mcqShuffle(eligible.map(q=>q.word.toLowerCase()));
+ const chosen=cycle.remaining.splice(0,count);
+ if(chosen.length<count){const rest=eligible.map(q=>q.word.toLowerCase()).filter(k=>!chosen.includes(k));const newCycle=mcqShuffle(rest);chosen.push(...newCycle.splice(0,count-chosen.length));cycle.remaining=newCycle}
+ const lookup=new Map(eligible.map(q=>[q.word.toLowerCase(),q]));mcqDeck=chosen.map(k=>lookup.get(k)).filter(Boolean);mcqIndex=0;mcqRight=0;mcqAnswered=false;drawMcq();
 }
 function drawMcq(){
  mcqAnswered=false;
