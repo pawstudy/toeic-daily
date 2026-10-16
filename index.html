@@ -337,6 +337,7 @@ function startMcq(){
  const limit=$('mcqCount').value;mcqDeck=limit==='all'?mcqDeck:mcqDeck.slice(0,Number(limit));mcqIndex=0;mcqRight=0;mcqAnswered=false;drawMcq();
 }
 function drawMcq(){
+ mcqAnswered=false;
  const host=$('mcqQuestion'),total=mcqDeck.length;
  $('mcqCounter').textContent=(total?Math.min(mcqIndex+1,total):0)+' / '+total;
  $('mcqScore').textContent=mcqRight+' đúng';
